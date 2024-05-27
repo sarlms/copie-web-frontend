@@ -21,8 +21,8 @@ const NavBar = () => {
           <RouterLink to="/feed">
             <img src="https://raw.githubusercontent.com/sarlms/sarargentique-pellicules-photos/main/feed.png" alt="Feed" style={{ width: '55px', marginRight: '25px' }} />
           </RouterLink>
-          {user ? (
-            <RouterLink to="/profil">
+          {user && profile ? (
+            <RouterLink to={`/profil/${profile.id}`}>
               <img src="https://raw.githubusercontent.com/sarlms/sarargentique-pellicules-photos/main/profil.png" alt="Profil" style={{ width: '75px', marginRight: '10px' }} />
             </RouterLink>
             ) : (
