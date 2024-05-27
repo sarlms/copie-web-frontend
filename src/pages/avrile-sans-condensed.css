@@ -1,0 +1,12 @@
+/* Exemple simplifié du contenu de avrile-sans-condensed.css */
+
+@font-face {
+    font-family: 'Avrile Sans Condensed';
+    src: url('https://exemple.com/fonts/avrile-sans-condensed.woff2') format('woff2'), /* Format WOFF2 */
+         url('https://exemple.com/fonts/avrile-sans-condensed.woff') format('woff'); /* Format WOFF */
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  /* D'autres styles peuvent être inclus ici */
+  

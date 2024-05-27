@@ -1,0 +1,92 @@
+/* Importer la police Bebas Neue */
+@import url('https://fonts.cdnfonts.com/css/bebas-neue');
+@import url('https://fonts.cdnfonts.com/css/avrile-sans-condensed');
+
+/* Pellicule.css */                
+
+.center-title {
+  text-align: center;
+  margin-top: 60px;
+  margin-bottom: 60px; /* Ajouter de l'espace en dessous du titre */
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 25px; /* Espace entre les cartes */
+}
+
+.pellicule-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: calc(50% - 40px); /* Ajustement pour deux cartes par ligne avec l'espace */
+  max-width: 400px;
+  margin-bottom: 40px; /* Augmenter l'espace entre les lignes de box */
+  box-sizing: border-box; /* Assurer que le padding et la bordure sont inclus dans la largeur */
+}
+
+
+.card {
+    border: 2px solid #42240F;
+    padding: 10px;
+    width: 100%;
+    border-radius: 30px; /* Ajouter des bordures arrondies */
+    box-sizing: border-box; /* Assurer que le padding et la bordure sont inclus dans la largeur */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Espace entre les éléments pour les aligner uniformément */
+    flex-grow: 1; /* Permet à la carte de prendre toute la hauteur disponible */
+}
+
+.card img {
+  width: 200px;
+  display: block;
+  margin: 0 auto; /* Centrer l'image horizontalement */
+}
+
+/*LE TITRE AU CENTRE*/
+.center-title {
+  position: relative; /* Position relative pour permettre le positionnement absolu des pseudo-éléments */
+  text-align: center;
+  margin-top: 60px;
+  margin-bottom: 60px; /* Ajouter de l'espace en dessous du titre */
+  font-family: 'Bebas Neue', sans-serif; /* Utilisation de la police Bebas Neue pour le titre */
+  font-size: 8em; /* Augmentation de la taille du texte */
+  color: #DD4C2E; /* Couleur principale du texte */
+}
+
+/*LES TITRES AU CENTRE DES BOX*/
+.card-title {
+  text-align: center; /* Centrer le titre de la carte */
+  margin-bottom: 25px; /* Ajouter une marge basse */
+  font-family: 'Bebas Neue', sans-serif; /* Utilisation de la police Bebas Neue pour les titres de carte */
+  font-size: 2.5em;
+  color: #DD4C2E; 
+}
+
+/*LE TEXTE DES BOX*/
+.card {
+  font-family: 'Avrile Sans Condensed', sans-serif; /* Utilisation de la police Bebas Neue pour tout le texte à l'intérieur des boxes */
+  font-size: 1.2em;
+}
+
+
+.button-container {
+  text-align: center; /* Centrer le bouton horizontalement */
+  margin-top: 10px; /* Ajouter une marge supérieure pour séparer du contenu de la carte */
+}
+
+.photos-button {
+  background-color: white; /* Couleur marron */
+  color: #DD4C2E; /* Couleur du texte */
+  border: 2px solid #DD4C2E;
+  border-radius: 30px; /* Ajouter des bordures arrondies */
+  padding: 10px 45px; /* Agrandir le bouton en augmentant le padding */
+  cursor: pointer; /* Afficher un curseur au survol */
+
+  font-family: 'Bebas Neue', sans-serif;
+  font-weight: bold;
+  font-size: 1.9em; /* Augmenter la taille du texte */
+}

@@ -1,0 +1,200 @@
+@import url('https://fonts.cdnfonts.com/css/bebas-neue');
+@import url('https://fonts.cdnfonts.com/css/avrile-sans-condensed');
+
+.center-title {
+  position: relative; /* Position relative pour permettre le positionnement absolu des pseudo-éléments */
+  text-align: center;
+  margin-top: 60px;
+  margin-bottom: 20px; /* Ajouter de l'espace en dessous du titre */
+  font-family: 'Bebas Neue', sans-serif; /* Utilisation de la police Bebas Neue pour le titre */
+  font-size: 8em; /* Taille du texte */
+  color: #ffffff; /* Couleur du texte */
+  text-shadow:
+    3px 3px 0 #42240F,
+    -3px 3px 0 #42240F,
+    -3px -3px 0 #42240F,
+    3px -3px 0 #42240F; /* Créer un effet de contour avec un ombrage */
+}
+
+.page-container {
+  display: flex;
+  flex-direction: column; /* Afficher les éléments verticalement */
+  align-items: center; /* Centrer horizontalement */
+  background-color: transparent; /* Fond transparent */
+  min-height: 100vh; /* Ajustez la hauteur selon vos besoins */
+}
+
+.profile-wrapper {
+  width: 50%; /* Largeur de la section du profil */ 
+  margin-top: 20px; /* Ajoute une marge en haut */
+}
+
+.profile-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgb(255, 255, 255); /* Fond beige */
+  padding: 20px;
+  border: 4px solid #42240F;
+  border-radius: 200px;
+  margin-bottom: 60px;
+}
+
+
+.user-info-titre{
+  font-family: 'Avrile Sans Condensed', sans-serif;
+  text-align: center;
+}
+
+
+/* Style pour les informations de l'utilisateur */
+.user-info {
+  background-color: #ffffff; /* Fond gris clair */
+  font-family: 'Avrile Sans Condensed', sans-serif;
+  padding: 15px;
+  margin-top: 15px; /* Marge en haut */
+  border: 1px solid #DD4C2E;
+  border-radius: 8px;
+  width: 50%; /*la largeur */
+  font-size: 1.2em;
+  color: #DD4C2E;
+}
+
+/* Style pour le titre "VOS INFOS" */
+.user-info h2 {
+  font-size: 3em;
+  margin-top: 2px;
+  margin-bottom: 5px;
+  text-align: center; /* Centrer le texte horizontalement */
+  margin-left: auto; /* Marge automatique à gauche */
+  margin-right: auto; /* Marge automatique à droite */
+  color: #DD4C2E;
+}
+
+/* Style pour ajouter une photo */
+.add-photo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centrer horizontalement */
+  align-items: center; /* Centrer verticalement */
+  background-color: #ffffff; /* Fond saumon */
+  padding: 15px;
+  margin-top: 15px; /* Marge en haut */
+  border: 1px solid #DD4C2E;
+  border-radius: 8px;
+  width: 50%; /* Occupe toute la largeur */
+  min-height: 50px; /* Hauteur minimale pour maintenir l'alignement vertical */
+}
+
+/* Style pour la photo de profil */
+.profile-picture img {
+  border-radius: 50%; /* Rendre la photo de profil ronde */
+  border: 0px solid #42240F; /* Bordure noire */
+  width: 300px; /* Taille de la photo de profil */
+  height: 300px;
+  object-fit: cover; /* Empêcher l'image de se déformer */
+}
+
+/* Style pour les informations de l'utilisateur */
+.user-info h2 {
+  margin-bottom: 10px;
+}
+
+
+/* Style pour le bouton "POSTER UNE PHOTO" */
+.add-photo button {
+  margin-top: 10px;
+  background-color: #DD4C2E; /* Couleur orange */
+  color: #ffffff; /* Couleur blanche pour le texte */
+  font-family: 'Avrile Sans Condensed', sans-serif; /* Utilisation de la police Avrile Sans Condensed */
+  font-size: 1.5em; /* Taille de la police */
+  padding: 10px 20px; /* Espacement à l'intérieur du bouton */
+  border: none; /* Supprimer la bordure */
+  border-radius: 8px; /* Coins arrondis */
+  cursor: pointer; /* Curseur de la souris lors du survol */
+  transition: background-color 0.3s ease; /* Animation de transition pour la couleur de fond */
+  margin-bottom: 20px;
+}
+
+.add-photo button:hover {
+  background-color: #C24C2E; /* Couleur orange plus foncée au survol */
+}
+
+.add-photo input[type="text"]:focus {
+  border-color: #C24C2E; /* Couleur orange foncé lorsqu'en focus */
+}
+
+/* Augmenter la taille de la police pour la liste des pellicules */
+.add-photo label {
+  font-size: 1.2em;
+}
+
+.form-group {
+  margin-bottom: 10px;
+}
+
+.form-group input {
+  width: calc(100% - 20px);
+  padding: 10px;
+  font-size: 1.2em;
+  border-radius: 5px;
+  border: 1px solid #DD4C2E;
+}
+
+form button {
+  width: calc(100% - 20px);
+  padding: 10px;
+  font-size: 1.2em;
+  border-radius: 5px;
+  border: none;
+  background-color: #DD4C2E;
+  color: #ffffff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+form button:hover {
+  background-color: #C24C2E;
+}
+
+/*PELLICULE UTILISEE*/
+.film-label {
+  font-size: 1.6em;
+  font-family: 'Avrile Sans Condensed', sans-serif;
+  margin-bottom: 5px;
+}
+
+/*CHOIX*/
+.film-choice {
+  font-size: 1.2em;
+  font-family: 'Avrile Sans Condensed', sans-serif;
+  margin-bottom: 10px;
+}
+
+/* Style pour les pellicules */
+.add-photo label {
+  font-size: 1.2em;
+  font-family: 'Avrile Sans Condensed', sans-serif; /* Utilisation de la police Avrile Sans Condensed */
+  color: #000000; /* Couleur du texte */
+}
+
+/* Style pour les cases cochées */
+.add-photo .MuiCheckbox-root {
+  color: #ff856d; /* Couleur orange */
+
+}
+
+/* Style pour les cases cochées lorsqu'elles sont sélectionnées */
+.add-photo .Mui-checked {
+  color: #DD4C2E; /* Couleur orange */
+}
+
+/* Style pour les champs "URL" et "Légende" lorsqu'ils sont cliqués */
+.form-group input[type="text"]:focus {
+  border-color: #DD4C2E; /* Couleur orange foncé lorsqu'en focus */
+}
+
+/* Réduction de la taille de la police pour les champs "URL" et "Légende" */
+.form-group input[type="text"] {
+  font-size: 1em; /* Taille de la police réduite */
+}

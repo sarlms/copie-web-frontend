@@ -1,0 +1,64 @@
+/* pelliculePhotos.css */
+@import url('https://fonts.cdnfonts.com/css/bebas-neue');
+
+.center-title {
+  text-align: center;
+  margin-top: 60px;
+  margin-bottom: 40px;
+  font-family: 'Bebas Neue', sans-serif;
+  color: #fff;
+  text-shadow:
+    3px 3px 0 #42240F,
+    -3px 3px 0 #42240F,
+    -3px -3px 0 #42240F,
+    3px -3px 0 #42240F; /* Créer un effet de contour avec un ombrage */
+}
+.photos-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.photo-container {
+  position: relative;
+  display: inline-block;
+}
+
+.photo {
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: filter 0.3s ease;
+}
+
+.photo:hover {
+  filter: brightness(30%);
+}
+
+.photo-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.photo-container:hover .photo-overlay {
+  opacity: 1;
+}
+
+.overlay-content {
+  display: flex;
+  align-items: center;
+  color: white;
+}
+
+.overlay-content img {
+  width: 40px;
+  height: 40px;
+  margin-right: 5px;
+}
