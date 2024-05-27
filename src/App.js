@@ -9,9 +9,11 @@ import PelliculePhotos from './pages/pelliculePhotos';
 import Profil from './pages/profil';
 import Feed from './pages/feed';
 import PhotoDetail from './pages/photoDetail';
+import { AuthContextProvider } from './context/AuthContext';
 
 const App = () => {
   return (
+    <AuthContextProvider>
     <Router>
       <Routes>
         <Route path="/" element={<Navigate to="/accueil" />} />
@@ -21,11 +23,12 @@ const App = () => {
         <Route path="/pellicule" element={<Pellicule />} />
         <Route path="/pelliculeDetail" element={<PelliculeDetail />} />
         <Route path="/pelliculePhotos/:pelliculeId" element={<PelliculePhotos />} />
-        <Route path="/profil" element={ <Profil />} />
+        <Route path="/profil/:id" element={ <Profil />} />
         <Route path="/feed" element={<Feed />} />
         <Route path="/photoDetail/:id" element={<PhotoDetail />} />
       </Routes>
     </Router>
+    </AuthContextProvider>
   );
 }
 
