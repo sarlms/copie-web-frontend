@@ -1,130 +1,121 @@
+/* profil.css */
 @import url('https://fonts.cdnfonts.com/css/bebas-neue');
 @import url('https://fonts.cdnfonts.com/css/avrile-sans-condensed');
 
 .center-title {
-  position: relative; /* Position relative pour permettre le positionnement absolu des pseudo-éléments */
+  position: relative;
   text-align: center;
   margin-top: 60px;
-  margin-bottom: 20px; /* Ajouter de l'espace en dessous du titre */
-  font-family: 'Bebas Neue', sans-serif; /* Utilisation de la police Bebas Neue pour le titre */
-  font-size: 8em; /* Taille du texte */
-  color: #ffffff; /* Couleur du texte */
+  margin-bottom: 20px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 8em;
+  color: #ffffff;
   text-shadow:
     3px 3px 0 #42240F,
     -3px 3px 0 #42240F,
     -3px -3px 0 #42240F,
-    3px -3px 0 #42240F; /* Créer un effet de contour avec un ombrage */
+    3px -3px 0 #42240F;
 }
 
 .page-container {
   display: flex;
-  flex-direction: column; /* Afficher les éléments verticalement */
-  align-items: center; /* Centrer horizontalement */
-  background-color: transparent; /* Fond transparent */
-  min-height: 100vh; /* Ajustez la hauteur selon vos besoins */
+  flex-direction: column;
+  align-items: center;
+  background-color: transparent;
+  min-height: 100vh;
 }
 
 .profile-wrapper {
-  width: 50%; /* Largeur de la section du profil */ 
-  margin-top: 20px; /* Ajoute une marge en haut */
+  width: 80%;
+  margin-top: 20px;
 }
 
 .profile-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: rgb(255, 255, 255); /* Fond beige */
+  background-color: #ffffff;
   padding: 20px;
   border: 4px solid #42240F;
-  border-radius: 200px;
+  border-radius: 20px;
   margin-bottom: 60px;
 }
 
-
-.user-info-titre{
+.user-info-titre {
   font-family: 'Avrile Sans Condensed', sans-serif;
   text-align: center;
 }
 
-
-/* Style pour les informations de l'utilisateur */
 .user-info {
-  background-color: #ffffff; /* Fond gris clair */
+  background-color: #ffffff;
   font-family: 'Avrile Sans Condensed', sans-serif;
   padding: 15px;
-  margin-top: 15px; /* Marge en haut */
+  margin-top: 15px;
   border: 1px solid #DD4C2E;
   border-radius: 8px;
-  width: 50%; /*la largeur */
+  width: 50%;
   font-size: 1.2em;
   color: #DD4C2E;
 }
 
-/* Style pour le titre "VOS INFOS" */
 .user-info h2 {
   font-size: 3em;
   margin-top: 2px;
   margin-bottom: 5px;
-  text-align: center; /* Centrer le texte horizontalement */
-  margin-left: auto; /* Marge automatique à gauche */
-  margin-right: auto; /* Marge automatique à droite */
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
   color: #DD4C2E;
 }
 
-/* Style pour ajouter une photo */
 .add-photo {
   display: flex;
   flex-direction: column;
-  justify-content: center; /* Centrer horizontalement */
-  align-items: center; /* Centrer verticalement */
-  background-color: #ffffff; /* Fond saumon */
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
   padding: 15px;
-  margin-top: 15px; /* Marge en haut */
+  margin-top: 15px;
   border: 1px solid #DD4C2E;
   border-radius: 8px;
-  width: 50%; /* Occupe toute la largeur */
-  min-height: 50px; /* Hauteur minimale pour maintenir l'alignement vertical */
+  width: 50%;
+  min-height: 50px;
 }
 
-/* Style pour la photo de profil */
 .profile-picture img {
-  border-radius: 50%; /* Rendre la photo de profil ronde */
-  border: 0px solid #42240F; /* Bordure noire */
-  width: 300px; /* Taille de la photo de profil */
+  border-radius: 50%;
+  border: 0px solid #42240F;
+  width: 300px;
   height: 300px;
-  object-fit: cover; /* Empêcher l'image de se déformer */
+  object-fit: cover;
 }
 
-/* Style pour les informations de l'utilisateur */
 .user-info h2 {
   margin-bottom: 10px;
 }
 
-
-/* Style pour le bouton "POSTER UNE PHOTO" */
 .add-photo button {
   margin-top: 10px;
-  background-color: #DD4C2E; /* Couleur orange */
-  color: #ffffff; /* Couleur blanche pour le texte */
-  font-family: 'Avrile Sans Condensed', sans-serif; /* Utilisation de la police Avrile Sans Condensed */
-  font-size: 1.5em; /* Taille de la police */
-  padding: 10px 20px; /* Espacement à l'intérieur du bouton */
-  border: none; /* Supprimer la bordure */
-  border-radius: 8px; /* Coins arrondis */
-  cursor: pointer; /* Curseur de la souris lors du survol */
-  transition: background-color 0.3s ease; /* Animation de transition pour la couleur de fond */
+  background-color: #DD4C2E;
+  color: #ffffff;
+  font-family: 'Avrile Sans Condensed', sans-serif;
+  font-size: 1.5em;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
   margin-bottom: 20px;
 }
 
 .add-photo button:hover {
-  background-color: #C24C2E; /* Couleur orange plus foncée au survol */
+  background-color: #C24C2E;
 }
 
 .add-photo input[type="text"]:focus {
-  border-color: #C24C2E; /* Couleur orange foncé lorsqu'en focus */
+  border-color: #C24C2E;
 }
 
-/* Augmenter la taille de la police pour la liste des pellicules */
 .add-photo label {
   font-size: 1.2em;
 }
@@ -157,44 +148,80 @@ form button:hover {
   background-color: #C24C2E;
 }
 
-/*PELLICULE UTILISEE*/
 .film-label {
   font-size: 1.6em;
   font-family: 'Avrile Sans Condensed', sans-serif;
   margin-bottom: 5px;
 }
 
-/*CHOIX*/
 .film-choice {
   font-size: 1.2em;
   font-family: 'Avrile Sans Condensed', sans-serif;
   margin-bottom: 10px;
 }
 
-/* Style pour les pellicules */
 .add-photo label {
   font-size: 1.2em;
-  font-family: 'Avrile Sans Condensed', sans-serif; /* Utilisation de la police Avrile Sans Condensed */
-  color: #000000; /* Couleur du texte */
+  font-family: 'Avrile Sans Condensed', sans-serif;
+  color: #000000;
 }
 
-/* Style pour les cases cochées */
 .add-photo .MuiCheckbox-root {
-  color: #ff856d; /* Couleur orange */
-
+  color: #ff856d;
 }
 
-/* Style pour les cases cochées lorsqu'elles sont sélectionnées */
 .add-photo .Mui-checked {
-  color: #DD4C2E; /* Couleur orange */
+  color: #DD4C2E;
 }
 
-/* Style pour les champs "URL" et "Légende" lorsqu'ils sont cliqués */
-.form-group input[type="text"]:focus {
-  border-color: #DD4C2E; /* Couleur orange foncé lorsqu'en focus */
+.add-photo .MuiCheckbox-root {
+  color: #ff856d;
 }
 
-/* Réduction de la taille de la police pour les champs "URL" et "Légende" */
-.form-group input[type="text"] {
-  font-size: 1em; /* Taille de la police réduite */
+.my-masonry-grid {
+  display: flex;
+  margin-left: -15px; /* gutter size offset */
+  width: auto;
+}
+
+.my-masonry-grid_column {
+  padding-left: 15px; /* gutter size */
+  background-clip: padding-box;
+}
+
+.my-masonry-grid_column > div {
+  margin-bottom: 15px;
+}
+
+.user-photos {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.photo-container {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.photo {
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: filter 0.3s ease;
+}
+
+.photo:hover {
+  filter: brightness(70%);
+}
+
+.photo-legende {
+  text-align: center;
+  margin-top: 5px;
+  font-family: 'Avrile Sans Condensed', sans-serif;
+  font-size: 1.2em;
+  color: #DD4C2E;
 }

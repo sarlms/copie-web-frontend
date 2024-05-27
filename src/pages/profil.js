@@ -4,11 +4,14 @@ import { Checkbox, FormControlLabel } from '@material-ui/core';
 import './profil.css';
 import { useAuthContext } from '../hooks/useAuthContext';
 import { useProfile } from '../hooks/useProfile';
+import Masonry from '@mui/lab/Masonry';
+import axios from 'axios';
 
 const Profil = () => {
   const [selectedPellicules, setSelectedPellicules] = useState([]);
   const [isAddingPhoto, setIsAddingPhoto] = useState(false);
-
+  const [photos, setPhotos] = useState([]);
+  
   const { profile } = useProfile(); // Corrected variable name
   const { user } = useAuthContext();
 
@@ -25,6 +28,21 @@ const Profil = () => {
     setIsAddingPhoto(!isAddingPhoto);
   };
 
+  const fetchUserPhotos = async (userId) => {
+    try {
+      const response = await axios.get(`http://localhost:3000/api/photo/user/${userId}`);
+      setPhotos(response.data);
+    } catch (error) {
+      console.error('Error fetching user photos:', error);
+    }
+  };
+
+  useEffect(() => {
+    if (user && user._id) {
+      fetchUserPhotos(user._id);
+    }
+  }, [user]);
+
   const pellicules = [
     "FUJICOLOR - C200",
     "FUJIFILM - XTRA",
@@ -39,17 +57,11 @@ const Profil = () => {
     "WASHI - X"
   ];
 
-  useEffect(() => {
-    console.log('profile', profile); // Log profile to see its value
-  }, [profile]);
-
   if (profile) {
     return (
       <div className="page-container">
         <NavBar />
-        <h1 className="center-title">
-          PROFIL
-        </h1>
+        <h1 className="center-title">PROFIL</h1>
         <div className="profile-wrapper">
           <div className="profile-container">
             <div className="profile-picture">
@@ -95,6 +107,18 @@ const Profil = () => {
           </div>
           <div className="user-photos">
             <h2>Toutes vos photos :</h2>
+            {photos.length > 0 ? (
+              <Masonry columns={{ xs: 1, sm: 2, md: 2, lg: 3 }} spacing={3}>
+                {photos.map((photo) => (
+                  <div key={photo._id} className="photo-container">
+                    <img src={photo.photoURL} alt={photo.legende} className="photo" />
+                    {photo.legende && <p className="photo-legende">{photo.legende}</p>}
+                  </div>
+                ))}
+              </Masonry>
+            ) : (
+              <p>AUCUNE PHOTO POUR L'INSTANT</p>
+            )}
           </div>
         </div>
       </div>
