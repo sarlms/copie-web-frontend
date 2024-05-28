@@ -23,9 +23,9 @@ function Inscription({ socket }) {
     prenom: ''
   });
 
-  const { signup, error, isLoading, success } = useSignup();
+  const { signup, error, isLoading } = useSignup();
   const navigate = useNavigate();
-  const [confirmPasswordError, setConfirmPasswordError] = React.useState('');
+  const [confirmPasswordError, setConfirmPasswordError] = useState('');
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -55,10 +55,15 @@ function Inscription({ socket }) {
 
     const success = await signup(pseudo, email, password, nom, prenom);
     if (success) {
+      saveToken(success.token);  // Appeler la fonction pour enregistrer les tokens
       navigate('/accueil');
     }
   };
 
+  const saveToken = (token) => {
+    localStorage.setItem('token', token);
+    // Autres actions liées à l'enregistrement des tokens si nécessaire
+  };
 
   return (
     <ThemeProvider theme={createTheme()}>

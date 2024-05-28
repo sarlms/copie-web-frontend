@@ -26,7 +26,7 @@
 }
 
 .profile-wrapper {
-  width: 80%;
+  width: 40%;
   margin-top: 20px;
 }
 
@@ -55,7 +55,7 @@
   border-radius: 8px;
   width: 50%;
   font-size: 1.2em;
-  color: #DD4C2E;
+  color: #000000;
 }
 
 .user-info h2 {
@@ -167,7 +167,7 @@ form button:hover {
 }
 
 .add-photo .MuiCheckbox-root {
-  color: #ff856d;
+  color: #DD4C2E;
 }
 
 .add-photo .Mui-checked {
@@ -175,7 +175,7 @@ form button:hover {
 }
 
 .add-photo .MuiCheckbox-root {
-  color: #ff856d;
+  color: #DD4C2E;
 }
 
 .my-masonry-grid {
@@ -214,9 +214,7 @@ form button:hover {
   transition: filter 0.3s ease;
 }
 
-.photo:hover {
-  filter: brightness(70%);
-}
+
 
 .photo-legende {
   text-align: center;
@@ -224,4 +222,45 @@ form button:hover {
   font-family: 'Avrile Sans Condensed', sans-serif;
   font-size: 1.2em;
   color: #DD4C2E;
+}
+
+.photo-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.photo-container:hover .photo-overlay {
+  opacity: 1;
+}
+
+.overlay-content {
+  display: flex;
+  align-items: center;
+  color: white;
+}
+
+.overlay-content img {
+  width: 40px;
+  height: 40px;
+  margin-right: 5px;
+}
+
+.like-icon {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+}
+
+.delete-icon {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  margin-left: 5px;
 }

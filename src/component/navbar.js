@@ -36,7 +36,7 @@ const NavBar = () => {
               <img
                 src="https://raw.githubusercontent.com/sarlms/sarargentique-pellicules-photos/main/image%20(7).png"
                 alt="Déconnexion"
-                style={{ width: '75px', marginRight: '10px', cursor: 'pointer' }}
+                style={{ width: '135px', marginRight: '10px', cursor: 'pointer' }}
                 onClick={handleLogout}
               />
             </>
