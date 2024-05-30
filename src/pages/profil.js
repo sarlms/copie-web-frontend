@@ -23,7 +23,7 @@ const Profil = () => {
   const [pellicule, setPellicule] = useState(null);
   const { profile } = useProfile();
   const { user } = useAuthContext();
-  const socket = io('http://localhost:3000');
+  const socket = io(process.env.REACT_APP_BACKEND_URL);
 
   const handlePelliculeChange = (e) => {
     const { value, checked } = e.target;
@@ -40,7 +40,7 @@ const Profil = () => {
 
   const fetchUserPhotos = async (userId) => {
     try {
-      const response = await axios.get(`http://localhost:3000/api/photo/user/${userId}`);
+      const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/photo/user/${userId}`);
       setPhotos(response.data);
     } catch (error) {
       console.error('Error fetching user photos:', error);
@@ -49,7 +49,7 @@ const Profil = () => {
 
   const fetchUserLikes = async (userId) => {
     try {
-      const response = await axios.get(`http://localhost:3000/api/photo/likes/user/${userId}`);
+      const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/photo/likes/user/${userId}`);
       setLikes(response.data);
     } catch (error) {
       console.error('Error fetching user likes:', error);
@@ -58,7 +58,7 @@ const Profil = () => {
 
   const fetchPellicules = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/api/pellicule');
+      const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/pellicule`);
       setPellicules(response.data);
     } catch (error) {
       console.error('Error fetching pellicules:', error);
@@ -80,7 +80,7 @@ const Profil = () => {
     const fetchPhotos = async () => {
       if (pelliculeId) {
         try {
-          const response = await axios.get(`http://localhost:3000/api/photo/pellicule/${pelliculeId}`);
+          const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/photo/pellicule/${pelliculeId}`);
           setPhotos(response.data);
         } catch (error) {
           console.error('Error fetching photos:', error);
@@ -91,7 +91,7 @@ const Profil = () => {
     const fetchPellicule = async () => {
       if (pelliculeId) {
         try {
-          const response = await axios.get(`http://localhost:3000/api/pellicule/${pelliculeId}`);
+          const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/pellicule/${pelliculeId}`);
           setPellicule(response.data);
         } catch (error) {
           console.error('Error fetching pellicule details:', error);
@@ -127,7 +127,7 @@ const Profil = () => {
     console.log('New photo data:', newPhoto);
 
     try {
-      const response = await axios.post('http://localhost:3000/api/photo/create', newPhoto);
+      const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/photo/create`, newPhoto);
       console.log('Response from server:', response.data);
       setPhotos([...photos, response.data]);
       socket.emit('createPhoto', response.data);
@@ -145,7 +145,7 @@ const Profil = () => {
   const handleDeletePhoto = async (photoId, e) => {
     e.stopPropagation(); // Empêche la navigation vers la page de détail de la photo
     try {
-      await axios.delete(`http://localhost:3000/api/photo/${photoId}`);
+      await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/api/photo/${photoId}`);
       setPhotos(photos.filter(photo => photo._id !== photoId));
       toast.success('Photo supprimée avec succès !'); // Afficher une notification de succès
       socket.emit('deletePhoto', photoId);
@@ -159,7 +159,7 @@ const Profil = () => {
     try {
       if (liked) {
         // Déliker la photo
-        const response = await axios.delete(`http://localhost:3000/api/like`, {
+        const response = await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/api/like`, {
           data: { userId: user._id, photoId }
         });
         setPhotos(photos.map(photo => {
@@ -176,7 +176,7 @@ const Profil = () => {
         socket.emit('likeRemoved', { photoId, userId: user._id });
       } else {
         // Liker la photo
-        const response = await axios.post(`http://localhost:3000/api/like/create`, {
+        const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/like/create`, {
           userId: user._id,
           photoId,
         });

@@ -13,12 +13,12 @@ function PhotoDetail() {
   const [commentaires, setCommentaires] = useState([]);
   const [newComment, setNewComment] = useState('');
   const { user } = useAuthContext();
-  const socket = io('http://localhost:3000');
+  const socket = io(process.env.REACT_APP_BACKEND_URL);
   const [liked, setLiked] = useState(false);
 
   const fetchPhoto = async () => {
     try {
-      const response = await axios.get(`http://localhost:3000/api/photo/details/${id}`);
+      const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/photo/details/${id}`);
       setPhoto(response.data);
     } catch (error) {
       console.error('Error fetching photo details:', error);
@@ -27,7 +27,7 @@ function PhotoDetail() {
 
   const fetchLikes = async () => {
     try {
-      const response = await axios.get(`http://localhost:3000/api/photo/${id}/likes`);
+      const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/photo/${id}/likes`);
       setLikes(response.data);
       if (user) {
         const userLike = response.data.find(like => like.userId === user._id);
@@ -40,7 +40,7 @@ function PhotoDetail() {
 
   const fetchCommentaires = async () => {
     try {
-      const response = await axios.get(`http://localhost:3000/api/commentaire/${id}/comments`);
+      const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/commentaire/${id}/comments`);
       setCommentaires(response.data);
     } catch (error) {
       console.error('Error fetching comments:', error);
@@ -61,7 +61,7 @@ function PhotoDetail() {
     try {
       if (liked) {
         // Déliker la photo
-        await axios.delete(`http://localhost:3000/api/like`, {
+        await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/api/like`, {
           data: { userId: user._id, photoId: id }
         });
         setLikes(likes.filter(like => like.userId !== user._id));
@@ -69,7 +69,7 @@ function PhotoDetail() {
         socket.emit('likeRemoved', { photoId: id, userId: user._id });
       } else {
         // Liker la photo
-        await axios.post(`http://localhost:3000/api/like/create`, {
+        await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/like/create`, {
           userId: user._id,
           photoId: id,
         });
@@ -91,7 +91,7 @@ function PhotoDetail() {
       return;
     }
     try {
-      const response = await axios.post('http://localhost:3000/api/commentaire/create', {
+      const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/commentaire/create`, {
         photoId: id,
         userId: user._id,
         contenu: newComment,
@@ -107,7 +107,7 @@ function PhotoDetail() {
 
   const handleDeleteComment = async (commentId) => {
     try {
-      await axios.delete(`http://localhost:3000/api/commentaire/${commentId}`);
+      await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/api/commentaire/${commentId}`);
       setCommentaires(commentaires.filter(comment => comment._id !== commentId));
       socket.emit('commentDeleted', { _id: commentId });
     } catch (error) {
