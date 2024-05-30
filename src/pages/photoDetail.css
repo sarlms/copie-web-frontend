@@ -48,19 +48,22 @@
   margin-right: 8px;
 }
 
+/* Ajouter ce style pour aligner les éléments de formulaire horizontalement */
 .comment-form {
   display: flex;
   align-items: center;
   margin-top: 10px;
+  justify-content: space-between; /* Ajoutez cette ligne pour espacer les éléments horizontalement */
 }
 
 .comment-input {
-  flex: 1; /* La barre d'écriture prend tout l'espace restant */
+  flex: 1;
   padding: 10px;
   font-size: 1em;
   border: 2px solid #ddd;
   border-radius: 4px;
   margin-right: 10px;
+  min-width: 400px;
 }
 
 .comment-button {
@@ -72,13 +75,13 @@
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  width: auto; /* Assurez-vous que le bouton a une largeur automatique */
-  white-space: nowrap; /* Empêche le texte de se diviser en plusieurs lignes */
+  white-space: nowrap;
 }
 
 .comment-button:hover {
   background-color: #c24c2e;
 }
+
 
 .comment-item {
   display: flex;

@@ -18,14 +18,12 @@ function Inscription({ socket }) {
     email: '',
     pseudo: '',
     password: '',
-    confirmPassword: '',
     nom: '',
     prenom: ''
   });
 
   const { signup, error, isLoading } = useSignup();
   const navigate = useNavigate();
-  const [confirmPasswordError, setConfirmPasswordError] = useState('');
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -42,16 +40,8 @@ function Inscription({ socket }) {
     const pseudo = data.get('pseudo');
     const email = data.get('email');
     const password = data.get('password');
-    const confirmPassword = data.get('confirmPassword');
-    const nom = data.get('lastName');
-    const prenom = data.get('firstName');
-
-    if (password !== confirmPassword) {
-      setConfirmPasswordError('Les mots de passe ne correspondent pas');
-      return;
-    }
-
-    setConfirmPasswordError('');
+    const nom = data.get('nom');
+    const prenom = data.get('prenom');
 
     const success = await signup(pseudo, email, password, nom, prenom);
     if (success) {
@@ -237,34 +227,6 @@ function Inscription({ socket }) {
                 },
               }}
             />
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              name="confirmPassword"
-              label="Confirmer le mot de passe"
-              type="password"
-              id="confirmPassword"
-              autoComplete="current-password"
-              value={formData.confirmPassword}
-              onChange={handleChange}
-              sx={{
-                '& label.Mui-focused': {
-                  color: '#1e2c28',
-                },
-                '& .MuiOutlinedInput-root': {
-                  '& fieldset': {
-                    borderColor: '#1e2c28',
-                  },
-                  '&:hover fieldset': {
-                    borderColor: '#1e2c28',
-                  },
-                  '&.Mui-focused fieldset': {
-                    borderColor: '#1e2c28',
-                  },
-                },
-              }}
-            />
             <Button
               type="submit"
               fullWidth
@@ -275,7 +237,6 @@ function Inscription({ socket }) {
               S'inscrire
             </Button>
             {error && <div className="error" style={{ color: 'red' }}>{error}</div>}
-            {confirmPasswordError && <div className="error" style={{ color: 'red' }}>{confirmPasswordError}</div>}
             <Grid container justifyContent="flex-end">
               <Grid item>
                 <Link href="/connexion" variant="body2" sx={{ color: '#1e2c28' }}>

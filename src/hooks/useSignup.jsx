@@ -20,10 +20,9 @@ export const useSignup = () => {
 
       // Save user and token to localStorage
       localStorage.setItem('user', JSON.stringify({ email: data.email, _id: data._id }));
-      localStorage.setItem('token', data.token);
 
       // Dispatch signup action
-      dispatch({ type: AuthActionType.LOGIN, payload: { user: { email: data.email, _id: data._id }, token: data.token } });
+      dispatch({ type: AuthActionType.LOGIN, payload: { user: { email: data.email, _id: data._id, token: data.token } }});
 
       return true; // Signup successful
     } catch (err) {

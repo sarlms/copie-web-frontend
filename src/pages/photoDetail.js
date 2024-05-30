@@ -40,7 +40,7 @@ function PhotoDetail() {
 
   const fetchCommentaires = async () => {
     try {
-      const response = await axios.get(`http://localhost:3000/api/photo/${id}/comments`);
+      const response = await axios.get(`http://localhost:3000/api/commentaire/${id}/comments`);
       setCommentaires(response.data);
     } catch (error) {
       console.error('Error fetching comments:', error);
@@ -77,6 +77,7 @@ function PhotoDetail() {
         setLiked(true);
         socket.emit('likeAdded', { photoId: id, userId: user._id });
       }
+
       fetchPhoto(); // Update the likes count
     } catch (error) {
       console.error('Error liking or unliking photo:', error);
@@ -108,30 +109,30 @@ function PhotoDetail() {
     try {
       await axios.delete(`http://localhost:3000/api/commentaire/${commentId}`);
       setCommentaires(commentaires.filter(comment => comment._id !== commentId));
-      socket.emit('commentDeleted', { commentId, photoId: id });
+      socket.emit('commentDeleted', { _id: commentId });
     } catch (error) {
       console.error('Error deleting comment:', error);
     }
   };
 
   useEffect(() => {
-    socket.on('likeAdded', ({ photoId }) => {
+    socket.on('likeAdded', ({ photoId, userId }) => {
       if (photoId === id) {
         setPhoto(photo => ({
           ...photo,
           likesCount: photo.likesCount + 1
         }));
-        setLikes(likes => [...likes, { photoId, userId: user._id }]);
+        setLikes(likes => [...likes, { photoId, userId }]);
       }
     });
 
-    socket.on('likeRemoved', ({ photoId }) => {
+    socket.on('likeRemoved', ({ photoId, userId }) => {
       if (photoId === id) {
         setPhoto(photo => ({
           ...photo,
           likesCount: photo.likesCount - 1
         }));
-        setLikes(likes => likes.filter(like => like.userId !== user._id));
+        setLikes(likes => likes.filter(like => like.userId !== userId));
       }
     });
 
@@ -141,8 +142,8 @@ function PhotoDetail() {
       }
     });
 
-    socket.on('commentDeleted', ({ commentId }) => {
-      setCommentaires(comments => comments.filter(comment => comment._id !== commentId));
+    socket.on('commentDeleted', ({ _id }) => {
+      setCommentaires(comments => comments.filter(comment => comment._id !== _id));
     });
 
     return () => {
@@ -161,8 +162,8 @@ function PhotoDetail() {
           <img src={photo.photoURL} alt={photo.legende} className="photo-detail" />
           <div className="info-container">
             <div className="details-box">
-              {photo.userId && <p>Postée par @{photo.userId}</p>}
-              {photo.pelliculeId && <p>Pellicule utilisée : {photo.pelliculeId}</p>}
+              {photo.userId && <p>Postée par @{photo.userId.pseudo}</p>}
+              {photo.pelliculeId && <p>Pellicule utilisée : {photo.pelliculeId.nom}</p>}
             </div>
             <div className="likes-comments-box">
               <div className="likes-box">
@@ -179,7 +180,7 @@ function PhotoDetail() {
                 {commentaires.map((comment) => (
                   <li key={comment._id} className="comment-item">
                     <p className="comment-content">
-                      <strong>{comment.userId.pseudo}:</strong> {comment.contenu}
+                      <strong>@{comment.userId.pseudo} :</strong> {comment.contenu}
                     </p>
                     {user && comment.userId._id === user._id && (
                       <img
