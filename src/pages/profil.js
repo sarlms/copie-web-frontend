@@ -339,6 +339,7 @@ const Profil = () => {
             <p>Loading...</p>
           )}
         </div>
+        <h4>DEDICACE A WAYNE...</h4>
       </div>
     );
   } else {

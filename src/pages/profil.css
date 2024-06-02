@@ -274,3 +274,7 @@ form button:hover {
   cursor: pointer;
   margin-left: 5px;
 }
+
+.page-container h4{
+  font-size: 0.4em;
+}
