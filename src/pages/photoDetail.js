@@ -231,7 +231,7 @@ function PhotoDetail() {
               )}
             </div>
           </div>
-          {profile.role === 'admin' ? (
+          {user && profile.role === 'admin' ? (
           <div className="admin-box">
             <p>Vous êtes admin, par conséquent vous pouvez supprimer cette photo</p>
             <div className="delete-form">
