@@ -249,7 +249,7 @@ const Profil = () => {
               <img src="https://raw.githubusercontent.com/sarlms/sarargentique-pellicules-photos/main/depositphotos_526270308-stock-illustration-smile-emotion-vector-icon-illustration.jpg" alt="Profil" />
             </div>
             <div className="user-info">
-              <h2>VOS INFOOS</h2>
+              <h2>VOS INFOS</h2>
               {profile.role === 'admin' ? (
               <h3>({profile.role})</h3>):
               (<h2>Bienvenue !</h2>)
