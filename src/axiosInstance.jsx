@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // Évite de répéter le passage du token sur chaque page
 const axiosInstance = axios.create({
-  baseURL: "http://localhost:3000",
+  baseURL: "http://localhost:5000",
 });
 
 axiosInstance.interceptors.request.use(
