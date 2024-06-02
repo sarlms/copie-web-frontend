@@ -23,7 +23,7 @@ const Feed = () => {
   const fetchRandomPhotos = async () => {
     setLoading(true);
     try {
-      const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/photo`);
+      const response = await axios.get(`http://localhost:3000/api/photo`);
       const randomPhotos = response.data.sort(() => 0.5 - Math.random()).slice(0, 20);
       const photosWithExpiry = { data: randomPhotos, expiry: Date.now() + 3600000 }; // 1 hour expiry
       localStorage.setItem('photos', JSON.stringify(photosWithExpiry));
@@ -39,7 +39,7 @@ const Feed = () => {
   const fetchUserLikes = async () => {
     if (user && user._id) {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/photo/likes/user/${user._id}`);
+        const response = await axios.get(`http://localhost:3000/api/photo/likes/user/${user._id}`);
         setLikes(response.data);
       } catch (error) {
         console.error('Error fetching user likes:', error);
@@ -83,7 +83,7 @@ const Feed = () => {
     try {
       if (liked) {
         // Déliker la photo
-        await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/api/like`, {
+        await axios.delete(`http://localhost:3000/api/like`, {
           data: { userId: user._id, photoId }
         });
         setPhotos(photos.map(photo => {
@@ -100,7 +100,7 @@ const Feed = () => {
         socket.emit('likeRemoved', { photoId, userId: user._id });
       } else {
         // Liker la photo
-        await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/like/create`, {
+        await axios.post(`http://localhost:3000/api/like/create`, {
           userId: user._id,
           photoId,
         });
@@ -167,7 +167,7 @@ const Feed = () => {
       <h2 className="sub-title">Découvrez de nouvelles pellicules !</h2>
       <h2 className="description">Vos 20 photos aléatoires</h2>
       {loading ? (
-        <p>Chargement des photos...</p>
+        <p>Loading...</p>
       ) : error ? (
         <p>{error}</p>
       ) : (

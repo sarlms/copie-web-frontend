@@ -12,7 +12,7 @@ function Pellicule() {
     // Fonction pour récupérer toutes les pellicules
     const fetchPellicules = async () => {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/pellicule`);
+        const response = await axios.get(`http://localhost:3000/api/pellicule`);
         setPellicules(response.data); // Mettre à jour le state avec les données des pellicules
       } catch (error) {
         console.error('Error fetching pellicules:', error);

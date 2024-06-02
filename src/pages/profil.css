@@ -68,6 +68,16 @@
   color: #DD4C2E;
 }
 
+.user-info h3 {
+  font-size: 2em;
+  margin-top: 2px;
+  margin-bottom: 5px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  color: #DD4C2E;
+}
+
 .add-photo {
   display: flex;
   flex-direction: column;

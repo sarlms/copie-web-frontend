@@ -10,7 +10,7 @@ function PelliculeDetail() {
     // Fonction pour récupérer les détails de la pellicule en fonction de son ID
     const fetchPelliculeDetail = async () => {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/pellicule/664f866eba844a741facd4c6`);
+        const response = await axios.get(`http://localhost:3000/api/pellicule/664f866eba844a741facd4c6`);
         setPellicule(response.data); // Mettre à jour le state avec les données de la pellicule
       } catch (error) {
         console.error('Error fetching pellicule detail:', error);

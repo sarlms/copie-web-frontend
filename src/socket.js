@@ -1,7 +1,7 @@
 import { io } from 'socket.io-client';
 
 const urls = {
-    server1: "http://localhost:5000",
+    server1: "http://localhost:3000",
     server2: process.env.REACT_APP_BACKEND_URL
 };
 

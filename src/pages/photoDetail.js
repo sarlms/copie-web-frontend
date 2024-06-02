@@ -1,25 +1,31 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import NavBar from '../component/navbar';
 import { useAuthContext } from '../hooks/useAuthContext';
 import { io } from 'socket.io-client';
+import { useProfile } from '../hooks/useProfile';
 import './photoDetail.css';
 
 function PhotoDetail() {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [photo, setPhoto] = useState(null);
   const [likes, setLikes] = useState([]);
   const [commentaires, setCommentaires] = useState([]);
   const [newComment, setNewComment] = useState('');
+  const [deleteReason, setDeleteReason] = useState('');
+  const [notification, setNotification] = useState('');
   const { user } = useAuthContext();
   const socket = io(process.env.REACT_APP_BACKEND_URL);
   const [liked, setLiked] = useState(false);
-
+  const { profile } = useProfile();
+  
   const fetchPhoto = async () => {
     try {
-      const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/photo/details/${id}`);
+      const response = await axios.get(`http://localhost:3000/api/photo/details/${id}`);
       setPhoto(response.data);
+      console.log('User role:', response.data.role);
     } catch (error) {
       console.error('Error fetching photo details:', error);
     }
@@ -27,7 +33,7 @@ function PhotoDetail() {
 
   const fetchLikes = async () => {
     try {
-      const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/photo/${id}/likes`);
+      const response = await axios.get(`http://localhost:3000/api/photo/${id}/likes`);
       setLikes(response.data);
       if (user) {
         const userLike = response.data.find(like => like.userId === user._id);
@@ -40,7 +46,7 @@ function PhotoDetail() {
 
   const fetchCommentaires = async () => {
     try {
-      const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/commentaire/${id}/comments`);
+      const response = await axios.get(`http://localhost:3000/api/commentaire/${id}/comments`);
       setCommentaires(response.data);
     } catch (error) {
       console.error('Error fetching comments:', error);
@@ -61,7 +67,7 @@ function PhotoDetail() {
     try {
       if (liked) {
         // Déliker la photo
-        await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/api/like`, {
+        await axios.delete(`http://localhost:3000/api/like`, {
           data: { userId: user._id, photoId: id }
         });
         setLikes(likes.filter(like => like.userId !== user._id));
@@ -69,7 +75,7 @@ function PhotoDetail() {
         socket.emit('likeRemoved', { photoId: id, userId: user._id });
       } else {
         // Liker la photo
-        await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/like/create`, {
+        await axios.post(`http://localhost:3000/api/like/create`, {
           userId: user._id,
           photoId: id,
         });
@@ -91,7 +97,7 @@ function PhotoDetail() {
       return;
     }
     try {
-      const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/commentaire/create`, {
+      const response = await axios.post(`http://localhost:3000/api/commentaire/create`, {
         photoId: id,
         userId: user._id,
         contenu: newComment,
@@ -107,7 +113,7 @@ function PhotoDetail() {
 
   const handleDeleteComment = async (commentId) => {
     try {
-      await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/api/commentaire/${commentId}`);
+      await axios.delete(`http://localhost:3000/api/commentaire/${commentId}`);
       setCommentaires(commentaires.filter(comment => comment._id !== commentId));
       socket.emit('commentDeleted', { _id: commentId });
     } catch (error) {
@@ -153,6 +159,24 @@ function PhotoDetail() {
       socket.off('commentDeleted');
     };
   }, [id, socket, user]);
+
+  const handleDeletePhoto = async () => {
+    if (!deleteReason) {
+      alert("Veuillez sélectionner une raison pour la suppression.");
+      return;
+    }
+
+    try {
+      await axios.delete(`http://localhost:3000/api/photo/${id}`);
+      setNotification(`Vous avez supprimé cette photo pour cause de : ${deleteReason}`);
+      setTimeout(() => {
+        setNotification('');
+        navigate('/accueil');
+      }, 3000);
+    } catch (error) {
+      console.error('Error deleting photo:', error);
+    }
+  };
 
   return (
     <div>
@@ -207,12 +231,39 @@ function PhotoDetail() {
               )}
             </div>
           </div>
-        </div>
-      ) : (
-        <p>Loading...</p>
-      )}
-    </div>
-  );
+          {profile.role === 'admin' ? (
+          <div className="admin-box">
+            <p>Vous êtes admin, par conséquent vous pouvez supprimer cette photo</p>
+            <div className="delete-form">
+              <select onChange={(e) => setDeleteReason(e.target.value)} value={deleteReason}>
+                <option value="">Sélectionnez une raison</option>
+                <option value="contenu inapproprié">Contenu inapproprié</option>
+                <option value="pas de droit à l'image">Pas de droit à l'image</option>
+                <option value="nudité">Nudité</option>
+                <option value="spam">Spam</option>
+                <option value="violence">Violence</option>
+                <option value="suicide">Suicide ou automutilation</option>
+                <option value="drogue">Drogues</option>
+                <option value="autre">Autre</option>
+              </select>
+              <button onClick={handleDeletePhoto}>
+                <img src="https://raw.githubusercontent.com/sarlms/sarargentique-pellicules-photos/main/veille%20soutenance/poubelle%20(1).png" alt="Supprimer" />
+                SUPPRIMER LA PHOTO
+              </button>
+            </div>
+            {notification && <p className="notification">{notification}</p>}
+          </div>
+        ) : (
+          <div>
+            <h2> </h2>
+          </div>
+        )}
+      </div>
+    ) : (
+      <p>Loading...</p>
+    )}
+  </div>
+);
 }
 
 export default PhotoDetail;
